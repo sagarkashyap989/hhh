@@ -46,6 +46,26 @@ app.post("/flashcards", (req, res) => {
   });
 });
 
+
+app.delete("/flashcards", (req, res) => {
+  const newFlashcards = req.body;
+
+  fs.readFile(DATA_FILE, "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Error reading data file" });
+    }
+ 
+    const updatedFlashcards = [];
+
+    fs.writeFile(DATA_FILE, JSON.stringify(updatedFlashcards, null, 2), (err) => {
+      if (err) {
+        return res.status(500).json({ message: "Error writing to data file" });
+      }
+      res.json({ message: "Flashcards added successfully", data: updatedFlashcards });
+    });
+  });
+});
+
 app.listen(PORT, () => {
     console.log("Server is running on http://localhost:" + PORT);
   });
