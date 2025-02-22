@@ -1,4 +1,3 @@
-
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
@@ -13,10 +12,8 @@ app.use(bodyParser.json());
 
 
 app.get("/", (req, res) => {
-    fs.readFile(DATA_FILE, "utf8", (err, data) => { 
-        return res.status(200).json({ message: "runingg..." }); 
+    return res.status(200).json({ message: "running..." });
   });
-
 
 // GET endpoint - Fetch flashcards
 app.get("/flashcards", (req, res) => {
@@ -50,5 +47,6 @@ app.post("/flashcards", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+    console.log("Server is running on http://localhost:" + PORT);
+  });
+  
