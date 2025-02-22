@@ -1,10 +1,11 @@
+
 const express = require("express");
-const serverless = require("serverless-http");
 const fs = require("fs");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const app = express();
+const PORT = 5000;
 const DATA_FILE = "hiraganaData.json";
 
 app.use(cors());
@@ -41,4 +42,6 @@ app.post("/flashcards", (req, res) => {
   });
 });
 
-module.exports.handler = serverless(app);
+app.listen(3001, () => {
+  console.log(`Server is running on http://localhost:${3001}`);
+});
